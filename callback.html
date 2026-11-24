@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Content Engine - Connecting</title>
+<style>
+:root { --bg: #f4f6f5; --ink: #17211e; --muted: #5a6b66; --accent: #0d7a68; }
+@media (prefers-color-scheme: dark) { :root { --bg: #0f1614; --ink: #e5edea; --muted: #98aaa4; --accent: #4cc7b0; color-scheme: dark; } }
+body { background: var(--bg); color: var(--ink); font: 16px/1.6 "Segoe UI", system-ui, sans-serif; margin: 0; }
+main { max-width: 560px; margin: 0 auto; padding: 64px 16px; }
+a { color: var(--accent); font-weight: 600; }
+p { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Connecting to Content Engine...</h1>
+  <p id="msg">Handing the TikTok sign-in over to the Content Engine app running on this computer.</p>
+  <p><a id="go" href="http://127.0.0.1:8787/api/tiktok/callback">Continue to the app</a></p>
+</main>
+<script>
+// Forwards only TikTok's OAuth result (code, state, error) to the local app. Nothing is stored or sent anywhere else.
+(function () {
+  var src = new URLSearchParams(window.location.search);
+  var out = new URLSearchParams();
+  ["code", "state", "error", "error_description", "scopes"].forEach(function (k) {
+    if (src.has(k)) out.set(k, src.get(k));
+  });
+  var target = "http://127.0.0.1:8787/api/tiktok/callback" + (out.toString() ? "?" + out.toString() : "");
+  document.getElementById("go").href = target;
+  if (src.has("state")) {
+    history.replaceState(null, "", window.location.pathname);
+    window.location.replace(target);
+  } else {
+    document.getElementById("msg").textContent = "This page is used by the Content Engine desktop app during TikTok sign-in.";
+  }
+})();
+</script>
+</body>
+</html>
