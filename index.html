@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Content Engine</title>
+<style>
+/* Layout: one readable column, a plain legal document. */
+:root { --bg: #f4f6f5; --ink: #17211e; --muted: #5a6b66; --line: #d6dedb; --accent: #0d7a68;
+  --body: "Segoe UI", system-ui, -apple-system, sans-serif; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0f1614; --ink: #e5edea; --muted: #98aaa4; --line: #2a3733; --accent: #4cc7b0; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg: #0f1614; --ink: #e5edea; --muted: #98aaa4; --line: #2a3733; --accent: #4cc7b0; color-scheme: dark; }
+body { background: var(--bg); color: var(--ink); font: 16px/1.65 var(--body); }
+main { max-width: 720px; margin: 0 auto; padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1 { font-size: 30px; line-height: 1.2; margin: 0 0 6px; text-wrap: balance; }
+h2 { font-size: 19px; margin: 32px 0 8px; padding-top: 18px; border-top: 1px solid var(--line); }
+p, li { max-width: 66ch; } ul { padding-left: 20px; }
+.meta { color: var(--muted); font-size: 14px; margin: 0 0 24px; }
+b { color: var(--accent); font-weight: 600; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Content Engine</h1>
+  <p class="meta">A private desktop tool that turns trends into short vertical videos and sends them to its owner's own TikTok account, only after the owner approves each upload.</p>
+  <ul>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="terms.html">Terms of Service</a></li>
+  </ul>
+</main>
+</body>
+</html>
